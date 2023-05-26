@@ -12,14 +12,14 @@ const readFiles = async () => {
     let response = await fetch('courseDetails.txt');
     let res = await response.text();
     res = splitLines(res);
-    document.getElementById('courseTitle').innerHTML = res[0];
-    document.getElementById('courseMaterial').href = res[1];
-    document.getElementById('afa').value = res[2];
-    document.getElementById('email').value = res[3];
-    document.getElementById('password1').value = res[4];
-    document.getElementById('password2').value = res[5];
-    document.getElementById('mimeo').value = res[6];
-    document.getElementById("trainerEmail").innerHTML = res[7];
+    getElement('courseTitle').innerHTML = res[0];
+    getElement('courseMaterial').href = res[1];
+    getElement('afa').value = res[2];
+    getElement('email').value = res[3];
+    getElement('password1').value = res[4];
+    getElement('password2').value = res[5];
+    getElement('mimeo').value = res[6];
+    getElement("trainerEmail").innerHTML = res[7];
 
     response = await fetch('pcs.txt');
     res = await response.text();
@@ -30,7 +30,7 @@ const readFiles = async () => {
     let students = splitLines(res);
 
     for (var i = 0; i < students.length; i++) {
-        var ol = document.getElementById("pcs");
+        var ol = getElement("pcs");
         var li = document.createElement("li");
         var a = document.createElement("a");
         a.href = pcs[i];
@@ -40,7 +40,9 @@ const readFiles = async () => {
         ol.appendChild(li);
     }
 }
-
+function getElement(id) {
+    return document.getElementById(id);
+}
 function setupForm() {
     document.querySelectorAll('input').forEach(txt =>
         txt.addEventListener('click', (event) => {
@@ -51,12 +53,12 @@ function setupForm() {
     cboValues.forEach(item => {
         let op = document.createElement('option');
         op.innerHTML = item.cbo;
-        document.getElementById('cboMessages').appendChild(op);
+        getElement('cboMessages').appendChild(op);
     });
 }
 
 function afa() {
-    var copyText = document.getElementById('afa');
+    var copyText = getElement('afa');
     copyText.select();
     copyText.setSelectionRange(0, 99999); // For mobile devices
     navigator.clipboard.writeText(copyText.value).then(() => {
@@ -82,13 +84,13 @@ function stopTimer() {
 }
 
 function showTutorMessages() {
-    let index = document.getElementById('cboMessages').selectedIndex;
+    let index = getElement('cboMessages').selectedIndex;
     let item = cboValues[index];
-    document.getElementById('txtArea').value = item.message;
+    getElement('txtArea').value = item.message;
     if (item.timer !== -1) {
         stopTimer();
-        document.getElementById('timer').value = item.timer;
-        document.getElementById('timer').nextElementSibling.value = item.timer;
+        getElement('timer').value = item.timer;
+        getElement('timer').nextElementSibling.value = item.timer;
         if (item.timer === 0)
             setMessage("");
     }
@@ -98,7 +100,7 @@ function startTimer(timerName, divCountdown) {
     stopTimer();
     setMessage("");
 
-    let mins = parseInt(document.getElementById(timerName).value);
+    let mins = parseInt(getElement(timerName).value);
     let seconds = mins * 60;
 
     myTimer = setInterval(function () {
@@ -111,13 +113,13 @@ function startTimer(timerName, divCountdown) {
             new Audio('Alarm01.wav').play();
             return;
         }
-        document.getElementById(divCountdown).innerHTML = minutes + ":" + (seconds - minutes * 60);
+        getElement(divCountdown).innerHTML = minutes + ":" + (seconds - minutes * 60);
         seconds--;
     }, 1000);
 }
 
 function setMessage(msg) {
-    document.getElementById('message').innerHTML = msg;
+    getElement('message').innerHTML = msg;
 }
 
 function getTime() {

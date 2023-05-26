@@ -21,30 +21,25 @@ const readFiles = async () => {
     document.getElementById('mimeo').value = res[6];
     document.getElementById("trainerEmail").innerHTML = res[7];
 
-    var data = {};
     response = await fetch('pcs.txt');
     res = await response.text();
-    data.pcs = splitLines(res);
+    let pcs = splitLines(res);
 
     response = await fetch('students.txt');
     res = await response.text();
-    data.students = splitLines(res);
+    let students = splitLines(res);
 
-    for (var i = 0; i < data.students.length; i++) {
+    for (var i = 0; i < students.length; i++) {
         var ol = document.getElementById("pcs");
         var li = document.createElement("li");
         var a = document.createElement("a");
-        a.href = data.pcs[i];
+        a.href = pcs[i];
         a.target = "_blank";
-        a.appendChild(document.createTextNode(data.students[i]));
+        a.appendChild(document.createTextNode(students[i]));
         li.appendChild(a);
         ol.appendChild(li);
     }
 }
-
-readFiles();
-setupForm();
-showTutorMessages();
 
 function setupForm() {
     document.querySelectorAll('input').forEach(txt =>
@@ -53,7 +48,6 @@ function setupForm() {
             event.target.setAttribute("readonly", "true");
         }));
 
-
     cboValues.forEach(item => {
         let op = document.createElement('option');
         op.innerHTML = item.cbo;
@@ -61,7 +55,26 @@ function setupForm() {
     });
 }
 
-//=================================================================
+function afa() {
+    var copyText = document.getElementById('afa');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value).then(() => {
+        let afaPath = "https://qa-learning.webex.com/webappng/sites/qa-learning/dashboard?siteurl=qa-learning";
+        window.open(afaPath); //, '_blank');
+    }, () => {
+        console.error('Failed to start AFA');
+    });
+}
+
+function splitLines(text) {
+    return text.split('\r\n').filter(line => line.trim() !== '');
+}
+
+readFiles();
+setupForm();
+
+//========================Timer and messages==============================
 var myTimer = null;
 function stopTimer() {
     if (myTimer !== null)
@@ -85,7 +98,7 @@ function startTimer(timerName, divCountdown) {
     stopTimer();
     setMessage("");
 
-    let mins = parseInt(getElement(timerName).value);
+    let mins = parseInt(document.getElementById(timerName).value);
     let seconds = mins * 60;
 
     myTimer = setInterval(function () {
@@ -98,7 +111,7 @@ function startTimer(timerName, divCountdown) {
             new Audio('Alarm01.wav').play();
             return;
         }
-        getElement(divCountdown).innerHTML = minutes + ":" + (seconds - minutes * 60);
+        document.getElementById(divCountdown).innerHTML = minutes + ":" + (seconds - minutes * 60);
         seconds--;
     }, 1000);
 }
@@ -112,18 +125,3 @@ function getTime() {
     return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 }
 
-function afa() {
-    var copyText = document.getElementById('afa');
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
-    navigator.clipboard.writeText(copyText.value).then(() => {
-        let afaPath = "https://qa-learning.webex.com/webappng/sites/qa-learning/dashboard?siteurl=qa-learning";
-        window.open(afaPath); //, '_blank');
-    }, () => {
-        console.error('Failed to start AFA');
-    });
-}
-
-function splitLines(text) {
-    return text.split('\r\n').filter(line => line.trim() !== '');
-}

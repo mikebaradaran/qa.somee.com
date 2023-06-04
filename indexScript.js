@@ -72,7 +72,7 @@ async function readFile(file) {
 }
 
 function splitLines(text) {
-    return text.split('\r\n').filter(line => line.trim() !== '');
+    return text.split('\n').filter(line => line.trim() !== '');
 }
 
 function getElement(id) {
@@ -92,7 +92,7 @@ function stopTimer() {
 function showTutorMessages() {
     let index = getElement('cboMessages').selectedIndex;
     if (index == 6) { // comments
-        window.open("https://qa.somee.com/comments/");
+        window.open("http://qa.somee.com/comments/");
         return;
     }
     if (index == 7) { // eval

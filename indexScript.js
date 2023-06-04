@@ -5,13 +5,16 @@ const cboValues = [
     { cbo: "ready to start", timer: -1, message: 'Please put a ✔ when you are ready to start 🐱‍🏍' },
     { cbo: "Coffee", timer: 15, message: 'Let\'s take a 15 minutes break ☕' },
     { cbo: "Lunch", timer: 60, message: 'Let\'s take 60 minutes for lunch 🍔' },
-    { cbo: "mini break", timer: 5, message: 'Let\'s take a 5 minutes mini break ☕' }
+    { cbo: "mini break", timer: 5, message: 'Let\'s take a 5 minutes mini break ☕' },
+    { cbo: "Course comments", timer: -1, message: '' },
+    { cbo: "Course evaluation", timer: -1, message: '' }
 ];
 
-const readFiles = async () => {
-    let response = await fetch('courseDetails.txt');
-    let res = await response.text();
-    res = splitLines(res);
+async function setupForm1() {
+    let res = await readFile('courseDetails.txt');
+    let pcs = await readFile('pcs.txt');
+    let students = await readFile('students.txt');
+
     getElement('courseTitle').innerHTML = res[0];
     getElement('courseMaterial').href = res[1];
     getElement('afa').value = res[2];
@@ -20,14 +23,8 @@ const readFiles = async () => {
     getElement('password2').value = res[5];
     getElement('mimeo').value = res[6];
     getElement("trainerEmail").innerHTML = res[7];
-
-    response = await fetch('pcs.txt');
-    res = await response.text();
-    let pcs = splitLines(res);
-
-    response = await fetch('students.txt');
-    res = await response.text();
-    let students = splitLines(res);
+    getElement('trainerPC').href = res[8];
+    getElement('ticks').src = "https://tick.qaalabs.com/mike/tutor";
 
     for (var i = 0; i < students.length; i++) {
         var ol = getElement("pcs");
@@ -40,13 +37,12 @@ const readFiles = async () => {
         ol.appendChild(li);
     }
 }
-function getElement(id) {
-    return document.getElementById(id);
-}
-function setupForm() {
+
+function setupForm2() {
     document.querySelectorAll('input').forEach(txt =>
         txt.addEventListener('click', (event) => {
             event.target.select();
+            navigator.clipboard.writeText(event.target.value)
             event.target.setAttribute("readonly", "true");
         }));
 
@@ -69,12 +65,22 @@ function afa() {
     });
 }
 
+async function readFile(file) {
+    let response = await fetch(file);
+    let res = await response.text();
+    return splitLines(res);
+}
+
 function splitLines(text) {
     return text.split('\r\n').filter(line => line.trim() !== '');
 }
 
-readFiles();
-setupForm();
+function getElement(id) {
+    return document.getElementById(id);
+}
+
+setupForm1();
+setupForm2();
 
 //========================Timer and messages==============================
 var myTimer = null;
@@ -85,6 +91,15 @@ function stopTimer() {
 
 function showTutorMessages() {
     let index = getElement('cboMessages').selectedIndex;
+    if (index == 6) { // comments
+        window.open("https://qa.somee.com/comments/");
+        return;
+    }
+    if (index == 7) { // eval
+        window.open("https://evaluation.qa.com/");
+        return;
+    }
+
     let item = cboValues[index];
     getElement('txtArea').value = item.message;
     if (item.timer !== -1) {
@@ -126,4 +141,3 @@ function getTime() {
     var today = new Date();
     return today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 }
-

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="p1"></div>
+    <div id="p2"></div>
+    <div id="p3"></div>
+    <script>
+        function display(p, id) {
+            let x = 1;
+            p.text().then(res => x = res);
+            console.log(x);
+            //p.then((res) => document.getElementById(id).innerHTML = res.text());
+        }
+        async function readFiles() {
+            let p1 = fetch('courseDetails.txt').resolve(x=> x.text());
+            //let p2 = fetch('pcs.txt');
+            //let p3 = fetch('students.txt');
+            //let p = await Promise.all([p1, p2, p3]);
+            //let x1, x2, x3;
+            //p[0].then(x => x1 = x);
+            //x1 = p[0].text().then(x => { return (x.text) });
+            alert(p1);
+        }
+        readFiles();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            border: 1px solid black;
+            background-color: antiquewhite;
+            width: 250px;
+            height: 100px;
+        }
+
+        #div1 {
+            width: 50px;
+            height: 30px;
+            background-color: lightblue;
+        }
+
+        .container {
+            float: left;
+        }
+
+        button {
+            margin-left: 3em;
+            margin-top: 1px;
+        }
+    </style>
+
+    <script>
+        function position(style) {
+            let ctl = document.getElementById("div1");
+            var css = {
+                top: '20px',
+                left: '150px'
+            };
+            css.position =  style;
+            Object.assign(ctl.style, css);
+            displayCss(css);
+        }
+        function displayCss(css) {
+            css = JSON.stringify(css).replaceAll(',', ',<br />&nbsp;&nbsp;&nbsp;').replace('{', '{<br />&nbsp;&nbsp;&nbsp;').replace('}', '<br />}');
+            document.getElementById("divCss").innerHTML = css;
+        }
+    </script>
+</head>
+<body>
+    <div id="divCss"></div>
+    <div class="container">
+        <div id="div1">QA</div>
+    </div>
+    <div>
+        <button onclick="position('static')">static</button><br />
+        <button onclick="position('relative')">relative</button>
+        <button onclick="position('absolute')">absolute</button><br />
+        <button onclick="position('fixed')">fixed</button>
+        <button onclick="position('sticky')">sticky</button><br />
+    </div>
+    <div>a</div>
+    <div>b</div>
+    <div>c</div>
+    <div>d</div>
+    <div>e</div>
+    <div>f</div>
+</body>
+</html>

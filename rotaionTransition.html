@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        .transformers {
+            transform: rotate(10deg) translate(100px, 0);
+            transform-origin: 0 0;
+            width: 50%;
+            border: 1px solid brown;
+        }
+
+        div:hover {
+            transition: background-color 5s, color 5s;
+            background-color: black;
+            color: white;
+        }
+
+        .skewItX {
+            transform: skewX(20deg);
+        }
+
+            .skewItX:hover {
+                transition: transform 2s;
+                transform: skewX(0deg);
+            }
+
+        .skewItY {
+            transform: skewY(20deg);
+        }
+
+        .skewItY, .skewItX {
+            border: 1px solid brown;
+            width: 200px;
+            height: 150px;
+            background-color: lightblue;
+            font-size: 24px;
+        }
+        div {
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h3>Hover your mouse over the rotated area and wait for a few seconds</h3>
+    <div class="transformers">
+        <img src="QA_logo_blue.png" />
+        Physics (from Greek word for "nature") is a branch of science that developed out of philosophy, and was thus referred to as natural philosophy until the late 19th century
+        Elements of what became physics were drawn primarily from the fields of astronomy, optics, and mechanics
+    </div>
+    <div class="skewItY">QA Training SkewY(20deg)</div>
+    <div class="skewItX">Apprenticeship training SkewX(20deg)</div>
+</body>
+</html>

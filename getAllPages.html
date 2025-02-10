@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <textarea id="code" spellcheck="false" width="500px" height="900px"></textarea>
+    <script>
+        const pages = [
+            "blockInline.html"
+            , "camera.html"
+            , "canvas.html"
+            , "demo.html"
+            , "demoOLD.html"
+            , "details.aspx"
+            , "domCreate.html"
+            , "enhancingLook.html"
+            , "fetch.html"
+            , "fileAPI.html"
+            , "form.html"
+            , "format.html"
+            , "geoLocation.html"
+            , "HTML5_morelists.html"
+            , "inlineBlock.html"
+            , "inputtingData.html"
+            , "json.html"
+            , "keyFrames.html"
+            , "lists.html"
+            , "measurment.html"
+            , "mediaScreen.html"
+            , "menus_bullets.html"
+            , "outputElement.html"
+            , "overflow.html"
+            , "positionDemo.html"
+            , "queryString.html"
+            , "region.html"
+            , "rotaionTransition.html"
+            , "rotaionZdirection.html"
+            , "select.html"
+            , "storage.html"
+            , "storagePage2.html"
+            , "svgCode.html"
+            , "svgCSSAnimation.html"
+            , "svgFilter.html"
+            , "tableCaption.html"
+            , "tables.html"
+            , "tabsInlineBlock.html"
+            , "AjaxDemo.html"
+            , "animation.html"
+        ];
+        pages.forEach(p => writePage(p));
+
+        function writePage(page) {
+            fetch(page)
+                .then(response => response.text())
+                .then(
+                    text => {
+                        code.innerHTML = code.innerHTML + page + "\n"+getCleanCode(text) +"\n\n";
+                    })
+        }
+        function getCleanCode(text) {
+            let end = text.indexOf("</html>") + 7;
+            let html = text.substring(0, end);
+            return html;
+        }
+    </script>
+</body>
+</html>

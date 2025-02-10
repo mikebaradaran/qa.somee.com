@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function serve(frm) {
+            if (frm.drink[2].checked &&
+                (frm.chkMilk.checked || frm.chkSugar.checked)) {
+                    alert("Can't have milk or sugar with soup!");
+                    return false;
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <h3>QA drink service</h3>
+    <form method="get" action="queryString.html" onsubmit="return serve(this)">
+        <div>
+            <input type="radio" name="drink" value="t" checked />Tea
+            <input type="radio" name="drink" value="c" />Coffee
+            <input type="radio" name="drink" value="s" />Soup
+        </div>
+        <div>
+            <input type="checkbox" name="milk" value="y" />Milk
+            <input type="checkbox" name="sugar" value="y" />Sugar
+        </div>
+        <input type="submit" value="Vend" />
+    </form>
+</body>
+</html>

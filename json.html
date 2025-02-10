@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<script>
+    let dataText = `
+    {
+        "menu": {
+            "id": "file",
+            "caption": "File",
+            "popup": {
+                "menuitem": [
+                    { "caption": "New",   "onclick": "CreateNewDoc()" },
+                    { "caption": "Open",  "onclick": "OpenDoc()"      },
+                    { "caption": "Close", "onclick": "CloseDoc()"     }
+                ]
+            }
+        }
+    }`;
+
+    let data = JSON.parse(dataText);
+
+    document.write(data.menu.caption);  // prints File
+    document.write("<br />");
+    document.write(data.menu.popup.menuitem[1].caption);  // prints Open
+</script>
+</body>
+</html>

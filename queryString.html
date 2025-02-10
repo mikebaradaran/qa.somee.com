@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+
+        let drink = params['drink'];
+        let milk = (params['sugar'] === undefined) ? 'no sugar' : 'sugar';
+        let sugar = (params['milk'] === undefined) ? 'no milk' : 'milk';
+
+
+        alert(`drink ${drink} \nwith ${sugar} \nwith ${milk}`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        @keyframes animation1 {
+            from {
+                transform: rotate(-10deg);
+            }
+
+            to {
+                transform: rotate(10deg);
+            }
+        }
+
+        @keyframes animation2 {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        #image1 {
+            animation-name: animation1;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+            z-index: 2;
+        }
+
+        #image2 {
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        #image2:hover {
+            animation-name: animation2;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        img {
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            position: relative;
+            width:400px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>CSS animations demo</h1>
+    <img id="image1" src="team.jpg" />
+    <br /> <br />
+    <img id="image2" src="team.jpg" />
+</body>
+</html>

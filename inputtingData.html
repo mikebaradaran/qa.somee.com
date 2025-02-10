@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inputs demo</h1>
+    <form action="index.html">
+        <div>
+            Number within min/max:
+            <input type="number" placeholder="Score" min="1" max="100" required>
+        </div>
+        <div>
+            RegEx, autocomplete=false, no spellcheck:
+            <input type="text" required spellcheck="false"
+                   pattern="[A-Z]{2}[0-9]{1,2}\s[0-9][A-Z]{2}"
+                   placeholder="Enter postcode"
+                   autocomplete="off">
+        </div><div>
+            pattern: letters only:<input type="text" pattern="[A-Za-z\s]+" />
+            <a href="https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_input_placeholder">see also</a>
+        </div>
+        <div>
+            10 max number of characters:
+            <input type="text" maxlength="10" placeholder="Max 10 chars...">
+        </div>
+        <div>
+            email:
+            <input type="email" placeholder="Multiple emails...">
+        </div>
+        <div>
+            Date input:
+            <input type="date" required>
+        </div>
+        <div>
+        <input type="range" value="24" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+        <output>24</output>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

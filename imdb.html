@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>QA</title>
+    <style>
+        li:hover{
+            background-color:lightcyan;
+        }
+        img{
+            height:250px;
+        }
+        #films {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <ol id="films"></ol>
+    <mark id="filmYear"></mark><img id="poster" />
+    <div style="clear:left">
+        film name:<input type="text" id="filmName" />
+        <button onclick="showFilmsList()">Show films</button>
+    </div>
+
+    <script>
+
+        let poster = document.getElementById('poster');
+        let filmYear = document.getElementById('filmYear');
+
+        function showFilmsList() {
+            poster.src = "";
+            filmYear.innerHTML = "";
+
+            let name = document.getElementById('filmName').value;
+            fetch("http://www.omdbapi.com/?apikey=ef5e4257&s=" + name)
+                .then(res => {
+                    return res.json();
+                }).then(data => {
+                    display(data)
+                });
+        }
+
+        function display(data) {
+            let ul = document.getElementById('films');
+            ul.innerHTML = "";
+            data.Search.forEach(film => {
+                let li = document.createElement('li');
+                li.appendChild(document.createTextNode("Title: " + film.Title));
+                li.addEventListener('mousemove', () => showPoster(film));
+                li.addEventListener('click', () => showInfo(film));
+                ul.appendChild(li);
+            });
+        }
+
+        function showPoster(film) {
+            poster.src = film.Poster;
+            filmYear.innerHTML = film.Year;
+        }
+
+        function showInfo(film) {
+            fetch("http://www.omdbapi.com/?apikey=ef5e4257&t=" + film.Title)
+                .then(res => {
+                    return res.json();
+                }).then(data => {
+                    alert('Actors:' + data.Actors + "\nDirector:" + data.Director);
+                });
+        }
+    </script>
+
+</body>
+</html>

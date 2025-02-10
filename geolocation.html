@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                log("Geolocation is not supported by this browser.");
+            }
+        }
+        function watchMyLocation() {
+            var geo = navigator.geolocation;
+            watchNumber = geo.watchPosition(onSuccess, onError);
+        }
+        function stopWatching() {
+            var geo = navigator.geolocation;
+            geo.clearWatch(watchNumber);
+        }
+        function showPosition(position) {
+            log("Latitude: " + position.coords.latitude +
+                "<br /> Longitude: " + position.coords.longitude);
+            showMap(position);
+        }
+        function log(msg) {
+            document.getElementById("x").innerHTML = msg;
+        }
+        function showMap(position) {
+            var latlon = position.coords.latitude + "," + position.coords.longitude;
+        }
+        function watchMyLocation() {
+            var geo = navigator.geolocation;
+            watchNumber = geo.watchPosition(showPosition);
+        }
+        function stopWatching() {
+            var geo = navigator.geolocation;
+            geo.clearWatch(watchNumber);
+        }
+    </script>
+</head>
+<body>
+    <div id="x"></div>
+    <div id="myMap"></div>
+    <button onclick="getLocation()">get your coordinates</button>
+</body>
+</html>

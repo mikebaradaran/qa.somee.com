@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <label for="courses">Choose a course:</label>
+
+    <select name="courses" id="courses">
+        <option value="ja">Java</option>
+        <option value="cs">C#</option>
+        <option value="wd">Web development</option>
+        <option value="se">Security</option>
+    </select>
+
+    <button onclick="showSelected()">What course index was selected?</button>
+<script>
+    function showSelected() {
+        let courses = document.getElementById('courses');
+        let index = courses.selectedIndex;
+        alert(`Index of ${index} was selected.\nText=${courses[index].text}\nvalue=${courses[index].value}`);
+    }
+</script>
+</body>
+</html>

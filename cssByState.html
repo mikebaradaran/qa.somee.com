@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        :checked {
+            height: 2em;
+            width: 2em;
+        }
+
+        :disabled {
+            border: 2px solid gray;
+            box-shadow: 2px 2px 2px;
+        }
+
+        :enabled {
+            border: 2px solid blue;
+        }
+
+        :focus {
+            border: 3px dashed green;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    Name <input type="text" /><br />
+    City <input type="text" /><br />
+    Registered: <input type="checkbox" value="reg" /><br />
+    <button disabled>Save</button>
+</body>
+</html>

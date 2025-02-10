@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <mark>Loading...</mark>
+    <script>
+        fetch('https://wsnorthwind.herokuapp.com/customers')
+            .then(res => {
+                return res.json();
+            }).then(data => {
+                display(data);
+            });
+
+        function display(data) {
+            data.forEach(cus => {
+                document.write(`<div>${cus.CustomerID}, ${cus.ContactName}, ${cus.City}</div>`)
+            });
+        }
+    </script>
+</body>
+</html>

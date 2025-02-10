@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="css-region-polyfill.js"></script>
+    <style>
+        #content {
+            flow-into: myContent;
+        }
+
+        #region1, #region2, #region3 {
+            flow-from: myContent;
+            wrap-through: wrap;
+        }
+
+        #region1 {
+            color: green;
+        }
+
+        #region2 {
+            color: red;
+        }
+
+        #region3 {
+            color: blue;
+            overflow: auto
+        }
+
+        div {
+            width: 250px;
+            height: 80px;
+            margin-bottom: 5px;
+            padding: 2px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://www.w3.org/TR/css-regions-1/">For example diagrams, see</a>
+    <hr />
+    <div id="content">
+        The actual text goes here... this is quite a lot of text it will
+        probably overflow the initial region where we place it...
+        The CSS Regions module allows content from one or more elements to flow through one or more boxes called CSS Regions, fragmented as defined in [CSS3-BREAK]. This module also defines CSSOM to expose both the inputs and outputs of this fragmentation.
+        CSS is a language for describing the rendering of structured documents (such as HTML and XML) on screen, on paper, in speech, etc.
+    </div>
+    <div id="region1">
+    </div>
+    <div>
+        No text will flow here! Not included in any region.
+    </div>
+    <div id="region2"> </div>
+    <div>
+        No text will flow here either! Not included in any region.
+    </div>
+    <div id="region3"></div>
+</body>
+</html>

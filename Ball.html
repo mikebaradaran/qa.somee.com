@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        canvas {
+            background-color: darkblue;
+            width: 50%;
+            height: 400px;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <canvas></canvas>
+        <script>
+            class Shape {
+                constructor(x, y, w, h) {
+                    this.x = x;
+                    this.y = y;
+                    this.w = w;
+                    this.h = h;
+                }
+            }
+
+            class MovingShape extends Shape {
+                constructor(x, y, w, h, dirX, dirY, world) {
+                    super(x, y, w, h)
+                    this.dirX = dirX;
+                    this.dirY = dirY;
+                    this.world = world;
+                }
+                move() {
+                    this.x += this.dirX;
+                    this.y += this.dirY;
+
+                    if (this.x <= this.world.x) {
+                        this.dirX *= -1;
+                        this.x = this.world.x;
+                    }
+                    if (this.y <= this.world.y) {
+                        this.dirY *= -1;
+                        this.Y = this.world.Y;
+                    }
+
+                    if (this.right() >= this.world.right()) {
+                        this.dirX *= -1;
+                    }
+                    if (this.bottom() >= this.world.bottom()) {
+                        this.dirY *= -1;
+                    }
+                }
+                bottom() {
+                    return this.y + this.h;
+                }
+
+                right() {
+                    return this.x + this.w;
+                }
+                toString() {
+                    return `x=${this.x}, y=${this.y}, w=${this.w}, h=${this.h}`;
+                }
+            }
+            class Ball extends MovingShape {
+                constructor(x, y, w, h, dirX, dirY, colour, shapeType, world) {
+                    super(x, y, w, h, dirX, dirY, world);
+                    this.colour = colour;
+                    this.shapeType = shapeType;
+                }
+                toString() {
+                    return super.toString() + `, color=${this.colour}`;
+                }
+            }
+            //-------------------------------------------
+            class World extends MovingShape {
+                constructor(x, y, w, h, dirX, dirY, world, context) {
+                    super(x, y, w, h, dirX, dirY, world)
+                    this.shapes = [];
+                    this.context = context;
+                }
+                move() {
+                    //super.move();
+                    this.shapes.forEach(s => s.move());
+                }
+                addShape(shape) {
+                    this.shapes.push(shape);
+                }
+                draw() {
+                    this.context.fillStyle = 'azure';
+                    this.context.fillRect(this.x, this.y, this.w, this.h);
+
+                    this.shapes.forEach(s => {
+                        this.context.fillStyle = s.colour;
+                        this.context.fillRect(s.x, s.y, s.w, s.h);
+                    })
+                }
+            }
+
+            class StaticWorld extends World {
+                constructor(x, y, w, h, context) {
+                    super(x, y, w, h, 0, 0, null, context);
+                }
+            }
+            class Game {
+                constructor(timeLimit, canvas) {
+                    this.context = canvas.getContext('2d');
+                    this.world = new StaticWorld(20, 30, canvas.width/2,canvas.height - 60, this.context);
+                    var b1 = new Ball(120, 120, 40, 20, 2, 2, 'blue', 1, this.world);
+                    var b2 = new Ball(130, 40, 20, 40, 3, 2, 'green', 1, this.world);
+                    var b3 = new Ball(50, 160, 50, 50, 4, 1, 'red', 1, this.world);
+
+                    this.world.addShape(b1);
+                    this.world.addShape(b2);
+                    this.world.addShape(b3);
+                    const noOfMoves = 10000;
+                    this.start(this.world, noOfMoves);
+                }
+
+                start(world, timeLimit) {
+                    let counter = 0;
+
+                    var myTimer = setInterval(function () {
+                        counter++;
+                        world.move();
+                        world.draw();
+                        if (counter > timeLimit) {
+                            clearInterval(myTimer);
+                            alert('Fin!')
+                        }
+                    }, 20);
+                }
+            }
+        </script>
+        <script>
+            var canvas = document.querySelector("canvas");
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            var game = new Game(100, canvas)
+
+        </script>
+    </center>
+</body>
+
+</html>

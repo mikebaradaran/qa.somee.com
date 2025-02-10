@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>QA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        #menu1 {
+            list-style-type: square;
+        }
+
+        #menu2 {
+            list-style-type: none;
+        }
+
+        #menu3 {
+            list-style-image: url('arrow.gif');
+            margin-left: 2em;
+        }
+        /* menues and tabs*/
+        header li, nav li {
+            background: #FFF;
+            list-style: none;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+
+        li:hover {
+            background-color: #cccccc;
+        }
+
+        header li {
+            border: 1px solid lightgrey;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            float: left;
+            box-shadow: -2px 2px 0 darkgrey;
+        }
+
+        nav {
+            width: 10%;
+            clear: left;
+        }
+
+        header {
+            margin-left: 90px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>Home</li>
+            <li>Sales</li>
+            <li>Courses</li>
+            <li>About QA</li>
+            <li>Help</li>
+        </ul>
+    </header>
+
+    <nav>
+        <ul>
+            <li>File</li>
+            <li>Edit</li>
+            <li>View</li>
+            <li>Project</li>
+        </ul>
+    </nav>
+
+    <ul>
+        <li>Normal</li>
+        <li>Sell</li>
+        <li>Cart</li>
+        <li>Checkout</li>
+        <li>Help</li>
+    </ul>
+    <ul id="menu1">
+        <li>Square</li>
+        <li>Sell</li>
+        <li>Cart</li>
+        <li>Checkout</li>
+        <li>Help</li>
+    </ul>
+    <ul id="menu2">
+        <li>No bullets</li>
+        <li>Sell</li>
+        <li>Cart</li>
+        <li>Checkout</li>
+        <li>Help</li>
+    </ul>
+    <ul id="menu3">
+        <li>With image bullets</li>
+        <li>Sell</li>
+        <li>Cart</li>
+        <li>Checkout</li>
+        <li>Help</li>
+    </ul>
+</body>
+</html>

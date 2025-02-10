@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function updateModel(size) {
+            var circle = document.getElementById('red-circle');
+            circle.setAttributeNS(null, "r", size);
+        }
+    </script>
+</head>
+<body>
+    <h1>SVG JavaScript API demo</h1>
+
+    <!-- Define an inline SVG graphic -->
+    <svg width="250" height="200" id="mySGV">
+        <rect x="0" y="0" width="250" height="200" stroke="gray" stroke-width="25" fill="white" />
+        <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="10" fill="cyan" />
+        <circle id="red-circle" cx="100" cy="100" r="25" stroke="red" stroke-width="10" fill="pink" />
+    </svg>
+
+    <br>
+    <br>
+    Size:<input type="range" id="radius" oninput="updateModel(this.value)" value="25"/>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+
+        .bordered {
+            float: left;
+            border: 1px solid red;
+            width: 2em;
+            text-align: center;
+        }
+
+        .turn {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplication table</h1>
+
+    <div id="multi"></div>
+
+    <script>
+        $(function () {
+            showTable();
+        });
+
+        function showTable() {
+            for (var i = 1; i < 11; i++) {
+                for (var j = 1; j < 11; j++) {
+                    let cell = $(`<div> ${i * j} </div>`);
+                    cell.addClass('bordered');
+                    cell.appendTo($('#multi'));
+
+                    // cell.mousemove(function () { });
+                    cell.mouseenter(function () {
+                        $(this).toggleClass("turn");
+                    });
+                }
+                $(`<div style='clear:both'></div>`).appendTo($('#multi'));
+            }
+        }
+    </script>
+</body>
+</html>

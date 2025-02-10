@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        .redBorder {
+            border: 1px solid red;
+        }
+
+        table {
+            border: 1px solid red;
+            width: 50%;
+        }
+
+        td {
+            border: 1px solid blue;
+        }
+
+        .silverBack {
+            background-color: silver;
+        }
+    </style>
+</head>
+<body>
+    <div id="customerData"></div>
+    <script>
+        var table = "<table><caption>Table example</caption>";
+        for (var row = 0; row < 5; row++) {
+            table += "<tr>";
+            for (var column = 0; column < 3; column++) {
+                table += "<td>" + row + "," + column + "</td>";
+            }
+            table += "</tr>";
+        }
+        table += "</table>"
+        document.getElementById("customerData").innerHTML = table;
+        console.log(table);
+    </script>
+    <h3>Advanced table demo</h3>
+
+    <table>
+        <caption>Sales</caption>
+        <colgroup span="2"
+                  style="background-color:lightcyan;"></colgroup>
+        <colgroup style="background-color:lightyellow;"></colgroup>
+
+        <thead>
+            <tr>
+                <th scope="col">Quarter</th>
+                <th scope="col">Total Sales</th>
+                <th scope="col">Goal Met?</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th scope="col" colspan="2">Total</th>
+                <th scope="col">Â£18,118</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Q1</td>
+                <td>Â£4,349</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Q2</td>
+                <td>Â£2,984</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Q3</td>
+                <td>Â£3,570</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Q4</td>
+                <td>Â£7,215</td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

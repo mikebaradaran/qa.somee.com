@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <script>
+        angular.module('app1', [])
+            .controller('controller1', function ($scope, $http) {
+                $scope.pageSize = 15;
+                $scope.skipBy = 0;
+                $scope.sortBy = 'City';
+                $scope.hideID = false;
+
+                $http({
+                    method: "Get", url: 'https://wsnorthwind.herokuapp.com/customers'
+                }).then(function (response) {
+                    $scope.customers = response.data;
+                });
+
+                $scope.sortByColumnName = function (s) {
+                    $scope.sortBy = s;
+                }
+
+                $scope.pgUpDownClick = function (upOrDown) {
+                    rows = $scope.pageSize * upOrDown;
+                    $scope.skipBy += rows;
+                    if ($scope.skipBy > $scope.customers.length)
+                        $scope.skipBy -= rows;
+                }
+            });
+    </script>
+</head>
+
+<body ng-app="app1" ng-controller="controller1">
+    Sort by:
+    <select ng-model="sortBy">
+        <option value="ContactName">Name</option>
+        <option value="CompanyName">Company</option>
+        <option value="Country">Country</option>
+        <option value="City">City</option>
+    </select>
+
+    Hide data: <input type="checkbox" ng-model="hideID" />
+
+    <table border="1">
+        <tr>
+            <th ng-click="sortByColumnName('CustomerID')"  ng-hide='hideID'>Name</th>
+            <th ng-click="sortByColumnName('ContactName')">Name</th>
+            <th ng-click="sortByColumnName('CompanyName')">Company</th>
+            <th ng-click="sortByColumnName('Country')">Country</th>
+            <th ng-click="sortByColumnName('City')">City</th>
+        </tr>
+        <tr ng-repeat="cus in customers | orderBy:sortBy | limitTo:pageSize : skipBy ">
+            <td ng-hide='hideID'>{{cus.CustomerID}}</td>
+            <td>{{cus.ContactName}}</td>
+            <td>{{cus.CompanyName}}</td>
+            <td>{{cus.Country}}</td>
+            <td>{{cus.City}}</td>
+        </tr>
+    </table>
+    <button ng-click="pgUpDownClick(+1)">page Down</button>
+    <button ng-click="pgUpDownClick(-1)">page Up</button>
+</body>
+
+</html>

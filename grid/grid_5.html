@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .wrapper > div {
+            background-color: lightgray;
+            padding: 0.5em;
+        }
+
+            .wrapper > div:nth-child(odd) {
+                background: lightcyan;
+            }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-gap: 1em;
+            grid-auto-rows: minmax(100px, auto);
+            /*justify-items: start;*/
+            /*justify-items: end;*/
+            justify-items: stretch;
+            /*align-items: start;*/
+            /*align-items: end;*/
+            /*align-items: center;*/
+            align-items: stretch;
+        }
+
+        .large {
+            grid-column: 1/3;
+            /*grid-row: 1/5;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="large">
+            large one!
+        </div>
+        <div>abore magna </div>
+        <div>
+            Magna t tempor.
+        </div>
+        <div>
+            officia laborum
+        </div>
+        <div>
+            Ipsum voluptate.
+        </div>
+
+    </div>
+</body>
+</html>

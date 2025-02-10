@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            font-size: 14px;
+        }
+
+        @keyframes effect1 {
+            from {
+                font-size: 14px;
+            }
+
+            to {
+                font-size: 36px;
+                color: red;
+            }
+        }
+
+        p:hover {
+            animation-name: effect1;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        p.animated {
+            animation-name: effect1;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+    </style>
+    <script>
+        function go() {
+            let x = document.getElementById("x");
+            x.className = !x.className ? "animated" : "";
+        }
+    </script>
+</head>
+<body>
+    <h1>Animation demo</h1>
+    <p id="x">This paragraph animates when you hover over it...</p>
+    <button onclick="go()">Click me</button>
+<hr />    
+<a href="http://qa.somee.com/html/slides/demo.html?page=sunRising.html">Sun rising!</a>
+</body>
+</html>

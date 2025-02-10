@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            background-color: lightblue;
+        }
+    </style>
+    <script>
+        function getContext() {
+            var canvas = document.getElementById("myCanvas");
+            return canvas.getContext("2d");
+        }
+        function draw() {
+            var context = getContext();
+
+            context.strokeStyle = 'gray';
+            for (let r = 30; r < 100; r += 5) {
+                context.beginPath();
+                context.arc(100, 100, r, 0, 2 * Math.PI);
+                context.stroke();
+            }
+            context.fillStyle = 'black';
+            context.strokeStyle = 'black';
+            context.font = "30px Verdana";
+            context.strokeText("Hello!", 20, 150);
+
+            context.fillStyle = 'green';
+            context.fillRect(100, 100, 50, 25);
+            context.lineWidth = 2;
+            context.beginPath();
+            context.moveTo(10, 10);
+            context.lineTo(150, 20);
+            context.stroke();
+            drawShapes();
+        }
+
+        drawShapes();
+
+        function clearDrawing() {
+            var canvasElement = document.getElementById("myCanvas");
+            var ctx = canvasElement.getContext("2d");
+            ctx.clearRect(0, 0, 200, 200);
+        }
+
+        function drawShapes() {
+            var ctx = getContext();
+            ctx.strokeStyle = "red";
+            ctx.fillStyle = "pink";
+            ctx.lineWidth = 4;
+
+            ctx.strokeRect(10, 20, 30, 40);
+
+            ctx.fillRect(50, 20, 30, 40);
+            ctx.strokeRect(50, 20, 30, 40);
+
+            ctx.fillRect(90, 20, 30, 40);
+
+            ctx.beginPath();
+            ctx.arc(25, 100, 15, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(65, 100, 15, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(105, 100, 15, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(145, 100);
+            ctx.lineTo(130, 100);
+            ctx.arc(145, 100, 15, 1.0 * Math.PI, 0.5 * Math.PI);
+            ctx.lineTo(145, 100);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(10, 180);
+            ctx.lineTo(40, 180);
+            ctx.lineTo(25, 140);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "black";
+            ctx.font = "30px Tahoma";
+            ctx.fillText("Tada!", 100, 170);
+        }
+
+
+        function clearDrawing() {
+            getContext().clearRect(0, 0, 200, 200);
+        }
+    </script>
+</head>
+<body>
+    <h1>Canvas demo</h1>
+    <canvas id="myCanvas" width="200px" height="200px"></canvas>
+    <button onclick="draw()">Draw</button>
+    <button onclick="clearDrawing()">Clear</button>
+</body>
+</html>

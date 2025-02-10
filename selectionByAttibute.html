@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        
+        input[type=text]:disabled {
+            background-color: lightgray;
+        }
+
+        input[placeholder *= 'C'] {
+            border: 3px groove red;
+        }
+        [company=qa]{
+            background-color: blue;
+            color:white;
+            font-weight:bold;
+            font-size:x-large;
+            width:30%;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <p company="qa">QA Training</p>
+    <p>This input has a placeholder of ABC: <input type="text" placeholder="ABC" />  </p>
+    <p>This input has a placeholder of AB:  <input disabled type="text" placeholder="AB" />  </p>
+    <a href="https://www.w3schools.com/cssref/css_selectors.asp">See also</a>
+</body>
+</html>

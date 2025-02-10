@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            /* overflow: scroll;  */
+            /* overflow: hidden;  */
+            /* overflow: visible; */
+        }
+
+        #div2 {
+            background-color: lightblue;
+            color: brown;
+            margin-top: 35px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Overflow demo</h1>
+    <div id="div1">
+        This div contains lots of text, probably too much
+        to fit within it, so we can control what happens to
+        the bits that won't fit in...
+    </div>
+    <div id="div2">
+        This is div2. Text colour is brown.
+    </div>
+    <h3>Click on a button to see effect</h3>
+    <button onclick="overflow(1)">overflow: scroll</button>
+    <button onclick="overflow(2)">overflow: hidden</button>
+    <button onclick="overflow(3)">overflow: visible</button>
+    <script>
+        function overflow(i) {
+            var div1 = document.getElementById('div1');
+
+            if (i == 1) {
+                div1.style.overflow = 'scroll';
+            }
+            else if (i == 2) {
+                div1.style.overflow = 'hidden';
+            }
+            else if (i == 3) {
+                div1.style.overflow = 'visible';
+            }
+        }
+    </script>
+</body>
+</html>

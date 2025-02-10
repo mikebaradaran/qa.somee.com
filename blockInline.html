@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        img {
+            width: 100px;
+            float: left;
+        }
+
+        span {
+            border: 2px solid red;
+        }
+    </style>
+    <script>
+        function display(style) {
+            let ctls = document.getElementsByTagName('span');
+            var css = {
+                width: '100px',
+                padding: '5px',
+                border: '2px dashed red'
+            };
+            css.display = style;
+            Object.assign(ctls[0].style, css);
+            Object.assign(ctls[1].style, css);
+            displayCss(css);
+        }
+        function displayCss(css) {
+            css = JSON.stringify(css).replaceAll(',', ',<br />&nbsp;&nbsp;&nbsp;').replace('{', '{<br />&nbsp;&nbsp;&nbsp;').replace('}', '<br />}');
+            document.getElementById("divCss").innerHTML = css;
+        }
+    </script>
+</head>
+<body>
+    <div>This a div with a couple of spans <span>span a</span> <span>span b</span>. Spans are inline elements</div>
+    <p>
+        <button onclick="display('inline-block')">Make spans into inline_block</button>
+        <button onclick="display('block')">Make spans into block elements</button>
+    </p>
+    <h1>Float demo</h1>
+    <img src="team.jpg" alt="QA team's picture"/>
+    <p>
+        <strong>
+            This paragraph text should be at the side of the image, then wrap underneath it
+            when it gets that far
+        </strong>--- Blah, blah, blah, blah, blah, blah, blah, blah, blah, blah,
+        blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah,
+        blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah,
+        blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah, blah,
+    </p>
+    <div id="divCss">
+    </div>
+    <p><a href="tabsInlineBlock.html">tabsInlineBlock.html</a></p>
+</body>
+</html>

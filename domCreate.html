@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<div id="divNames"></div>
+<div id="lblName"></div>
+<script>
+    let names = ['Mike', 'Laichee', 'Jonathan', 'Christopher', 'Sean', 'Sasha', 'Kimberly', 'Lorenzo'];
+
+    let ol = document.createElement("ol");
+    let divNames = document.getElementById('divNames');
+    let lblName = document.getElementById('lblName');
+
+    divNames.appendChild(ol);
+
+    for (let i = 0; i < names.length; i++) {
+        divNames.appendChild(ol);
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.href = "http://qa.somee.com/details.aspx?name=" + names[i];
+        a.appendChild(document.createTextNode(names[i]));
+        li.appendChild(a);
+        ol.appendChild(li);
+        li.addEventListener('mousemove', (e) => {
+            lblName.innerHTML = e.target.href;
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getLocalVar() {
+            alert(localStorage.name);
+        }
+        function getSessionVar() {
+            alert(sessionStorage.name);
+        }
+        function setSessionVar() {
+            sessionStorage.name = "Name in sessionStorage";
+        }
+        function setLocalVar() {
+            localStorage.name = "Name in localStorage";
+        }
+    </script>
+</head>
+<body>
+    <h1>Local and session storage</h1>
+    <p>
+        <button onClick="getSessionVar()">get SessionStorage var</button>
+        <button onClick="getLocalVar()">get LocalStorage var</button>
+    </p>
+    <p>
+        <button onClick="setSessionVar()">set SessionStorage var</button>
+        <button onClick="setLocalVar()">set LocalStorage var</button>
+    </p>
+    <a href="demo.html?page=storagePage2.html">Storage Go to page 2</a>
+</body>
+</html>

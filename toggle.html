@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        function validate() {
+            $("#qa").toggleClass("redBorder");
+        }
+    </script>
+    <style>
+        .redBorder {
+            border: 1px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <div id="qa">QA Training Ltd.</div>
+    <button onclick="validate()">validate</button>
+</body>
+</html>

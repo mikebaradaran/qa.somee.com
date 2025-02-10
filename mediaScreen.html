@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>QA</title>
+    <style>
+        body {
+            background-color: White;
+        }
+
+        @media screen and (max-width:1000px) {
+            body {
+                background-color: blue;
+            }
+
+            h1 {
+                font-size: 20pt;
+            }
+            img{
+                width:500px;
+            }
+        }
+
+        @media screen and (max-width:800px) {
+            body {
+                background-color: green;
+            }
+
+            h1 {
+                font-size: 15pt;
+            }
+            img {
+                width: 300px;
+            }
+        }
+
+        @media screen and (max-width:300px) {
+            body {
+                background-color: yellow;
+            }
+
+            h1 {
+                font-size: 10pt;
+            }
+            img {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Resize the width. Background colour and font size will change </h1>
+    <img id="image1" src="team.jpg" alt="team's image"/>
+</body>
+</html>

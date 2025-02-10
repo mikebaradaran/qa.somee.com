@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<ol id="students"></ol>
+<script>
+    let ol = document.getElementById('students');
+
+    let names = ['Mike', 'Bob', 'Linda'];
+
+    names.forEach(name => {
+        let li = document.createElement('li');
+        li.innerHTML = name;
+        ol.appendChild(li);
+    });
+</script>
+
+</body>
+</html>

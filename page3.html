@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h3>Example of get method</h3>
+    <form method="get" action="serve.aspx">
+        <div>
+            <input type="radio" name="drink" value="t" checked />Tea
+            <input type="radio" name="drink" value="c" />Coffee
+            <input type="radio" name="drink" value="s" />Soup
+        </div>
+        <div>
+            <input type="checkbox" name="milk" value="y" />Milk
+            <input type="checkbox" name="sugar" value="y" />Sugar
+        </div>
+        <input type="submit" value="Vend" />
+    </form>
+
+    <h3>Example of post method</h3>
+    <form method="post" action="serve.aspx">
+        <div>
+            <input type="radio" name="drink" value="t" checked />Tea
+            <input type="radio" name="drink" value="c" />Coffee
+            <input type="radio" name="drink" value="s" />Soup
+        </div>
+        <div>
+            <input type="checkbox" name="milk" value="y" />Milk
+            <input type="checkbox" name="sugar" value="y" />Sugar
+        </div>
+        <input type="submit" value="Vend" />
+    </form>
+    <h2>serve.aspx</h2>
+    <textarea rows="15" style="width:100%; padding:1em; font-weight:bold">
+if (Request.HttpMethod == "GET")
+{
+    drink = Request.QueryString["drink"];
+    sugar = Request.QueryString["sugar"];
+    milk = Request.QueryString["milk"];
+}
+if (Request.HttpMethod == "POST")
+{
+    drink = Request.Form["drink"];
+    sugar = Request.Form["sugar"];
+    milk = Request.Form["milk"];
+}
+displayDrink();
+    </textarea>
+</body>
+</html>

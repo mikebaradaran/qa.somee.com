@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #codeText {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            font-weight: bold;
+            background-image: url("paper.jpg");
+        }
+
+        .content, #codeContainer {
+            width: 50%;
+            float: left;
+            height: 97vh;
+        }
+    </style>
+</head>
+<body>
+    <object class="content" type="text/html" id="webPage"></object>
+    <div id="codeContainer">
+        <textarea id="codeText" onresize="alert('x')" spellcheck="false"></textarea>
+    </div>
+    <script>
+        document.onkeydown = checkKey;
+        let codeContainer = document.getElementById('codeContainer');
+        let code = document.getElementById("codeText");
+        let webPage = document.getElementById("webPage");
+        let wPercent = 0;
+        let fontSize = 12;
+
+        function checkKey(e) {
+            e = e || window.event;
+            if (!e.ctrlKey)
+                return
+
+            if (e.keyCode == '37') {
+                wPercent += 5;
+                codeContainer.style.width = 50 + wPercent + "%";
+                webPage.style.width = 50 - wPercent + "%";
+            }
+            else if (e.keyCode == '39') {
+                wPercent -= 5;
+                codeContainer.style.width = 50 + wPercent + "%";
+                webPage.style.width = 50 - wPercent + "%";
+            }
+            else if (e.keyCode == '38') {   // up
+                code.style.fontSize = ++fontSize + "px";
+            }
+            else if (e.keyCode == '40') {   // down
+                code.style.fontSize = --fontSize + "px";
+            }
+        }
+
+        webPage.data = getPageName();
+
+        fetch(getPageName())
+            .then(response => response.text())
+            .then(
+                text => {
+                    code.innerHTML = getCleanCode(text);
+                })
+
+        function getPageName() {
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlSearchParams.entries());
+            return params['page'];
+        }
+
+        function getCleanCode(text) {
+            let end = text.indexOf("</html>") + 7;
+            let html = text.substring(0, end);
+            return html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showFile() {
+            var fileUpload = document.getElementById("my-file");
+            // choose file from user's drive
+            var blob = fileUpload.files[0]; // Type = File
+
+            var reader = new FileReader();
+            reader.readAsText(blob, "UTF-8"); // asynchronous
+            reader.onload = function () {
+                alert(reader.result);
+            };
+        }
+    </script>
+</head>
+<body>
+    <h1>Files demo</h1>
+    <input id="my-file" type='file' accept='text/text'>
+    <button onclick="showFile()">Show file contents</button>
+    <div id="content"></div>
+</body>
+</html>

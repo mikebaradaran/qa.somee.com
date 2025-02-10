@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+    <ol id="tflLines"></ol>
+    <div id="info"></div>
+    <script>
+        let url = 'https://api.tfl.gov.uk/Line/Mode/tube/Status';
+
+        $.getJSON(url, (data) => display (data));
+
+        function display(data) {
+            let ol = $('#tflLines');
+            data.forEach(line => {
+                let li = $(`<li>${line.id}</li>`);
+                li.mousemove( ()=>displayInfo(line) );
+                li.appendTo(ol);
+            });
+        }
+        function displayInfo(line) {
+            let info = $('#info');
+            info.html('');
+            $(`<div><h3>Status of line ${line.id}<h3></div>`).appendTo(info);
+            line.lineStatuses.forEach(status => {
+                $(`<div>${status.statusSeverityDescription}</div>`).appendTo(info);
+            });
+        }
+    </script>
+</body>
+</html>

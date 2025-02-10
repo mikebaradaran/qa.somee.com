@@ -1,0 +1,8 @@
+python -m http.server
+
+a server will be created at localhost:8000
+
+to start on port 5055
+python -m http.server 5055
+
+

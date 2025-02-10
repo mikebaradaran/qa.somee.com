@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p {
+            background-color: antiquewhite;
+            font-size: 24px;
+        }
+
+        div > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-container-wrap {
+            background-color: DodgerBlue;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-container-nowrap {
+            display: flex;
+            flex-wrap: nowrap;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container-justifyCenter {
+            background-color: DodgerBlue;
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+        }
+
+        .flex-container-start {
+            display: flex;
+            justify-content: flex-start;
+            flex-flow: row;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container-end {
+            display: flex;
+            justify-content: flex-end;
+            flex-flow: row;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container-space {
+            display: flex;
+            justify-content: space-around;
+            flex-flow: row;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container-spacebetween {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: row;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container-stretch {
+            display: flex;
+            align-items: stretch;
+            flex-flow: row;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container-perfectCenter {
+            background-color: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reverseDirection {
+            flex-direction: row-reverse;
+        }
+
+        button {
+            height: 50px;
+            width: 200px;
+            border-radius: 10px;
+            box-shadow: gray 5px 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>The flex-wrap Property</h1>
+
+    <p>flex-wrap: wrap</p>
+    <div class="flex-container-wrap" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <p>flex-wrap: nowrap</p>
+    <div class="flex-container-nowrap" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+    <p>justify Center</p>
+    <div class="flex-container-justifyCenter" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>perfectCenter</p>
+    <div class="flex-container-perfectCenter" style="height:300px; width:50%" top="true">
+        <img src="QA_logo_blue.png" />
+    </div>
+    <p>justify start</p>
+    <div class="flex-container-start" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>justify end</p>
+    <div class="flex-container-end" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>space</p>
+    <div class="flex-container-space" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>space between</p>
+    <div class="flex-container-spacebetween" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>flex grow</p>
+    <div class="flex-container-wrap" top="true">
+        <div style="flex-grow: 1">1</div>
+        <div style="flex-grow: 1">2</div>
+        <div style="flex-grow: 8">3</div>
+    </div>
+    <p>flex shrink</p>
+    <div class="flex-container-nowrap" style="width:50%" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div style="flex-shrink: 0">3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+    </div>
+    <p>Make the third item not growable (0), not shrinkable (0), initial length=200px</p>
+
+    <div class="flex-container-nowrap" top="true">
+        <div>1</div>
+        <div>2</div>
+        <div style="flex: 0 0 200px">3</div>
+        <div>4</div>
+    </div>
+    <button onclick="reverse()">Reverse direction!</button>
+    <script>
+        function reverse() {
+            var items = document.querySelectorAll("[top='true']");
+            console.log(items.length);
+            for (var i = 0; i < items.length; i++) {
+                items[i].classList.add('reverseDirection');
+            }
+        }
+    </script>
+</body>
+</html>

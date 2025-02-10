@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>QA</title>
+</head>
+<body>
+
+    <form oninput="x.value=parseInt(a.value)">
+        <input type="range" id="a">
+        =<output name="x"></output>
+    </form>
+
+    <hr />
+
+    <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+        <input type="range" id="a">
+        <span>+</span>
+        <input type="number" id="b" value="25">
+        =<output name="x"></output>
+    </form>
+
+</body>
+</html>

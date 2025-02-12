@@ -11,7 +11,7 @@
                 $scope.hideID = false;
 
                 $http({
-                    method: "Get", url: 'https://wsnorthwind.herokuapp.com/customers'
+                    method: "Get", url: 'https://tx100.glitch.me/customers'
                 }).then(function (response) {
                     $scope.customers = response.data;
                 });
